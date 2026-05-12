@@ -18,10 +18,20 @@ export const authOptions ={
         if (account) {
             token.accessToken = account.access_token
         }
+        if (account) {
+  token.accessToken = account.access_token;
+  // fetch spotify user id
+  const userRes = await fetch("https://api.spotify.com/v1/me", {
+    headers: { Authorization: `Bearer ${account.access_token}` },
+  });
+  const user = await userRes.json();
+  token.spotifyUserId = user.id;
+}  
         return token
     },
     async session({ session, token, user }) {
         session.accessToken = token.accessToken
+        session.spotifyUserId = token.spotifyUserId;
         return session
     }
  }
