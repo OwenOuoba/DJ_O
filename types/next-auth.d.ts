@@ -11,3 +11,12 @@ declare module "next-auth/jwt" {
     accessToken?: string;
   }
 }
+
+interface Session {
+  accessToken?: string;
+  spotifyUserId?: string;
+}
+interface JWT {
+  accessToken?: string;
+  spotifyUserId?: string;
+}
